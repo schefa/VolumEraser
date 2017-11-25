@@ -34,6 +34,7 @@ namespace VolumEraser.Views
         public MainWindow()
         {
             InitializeComponent();
+            SetLanguageDictionary();
 
             // Assign Elements
             PGBar = progressBar;
@@ -50,6 +51,21 @@ namespace VolumEraser.Views
             } 
             
             lvDrives.ItemsSource = Volumes.getDrives(); 
+        }
+
+        private void SetLanguageDictionary()
+        {
+            ResourceDictionary dict = new ResourceDictionary();
+            switch (Thread.CurrentThread.CurrentCulture.ToString())
+            {
+                case "en-US":
+                    dict.Source = new Uri("..\\Resources\\EN.xaml", UriKind.Relative);
+                    break;
+                default:
+                    dict.Source = new Uri("..\\Resources\\DE.xaml", UriKind.Relative);
+                    break;
+            }
+            this.Resources.MergedDictionaries.Add(dict);
         }
 
         public void rb_Unchecked(object sender, RoutedEventArgs e)
@@ -73,7 +89,7 @@ namespace VolumEraser.Views
             // Only removable supported
             if(Models.Volume.checkDriveType(selectedItem.DriveType))
             {
-                lvReport.Items.Add("Datenträger ausgewählt: " + selectedItem.Name + " " + selectedItem.VolumeLabel);
+                lvReport.Items.Add(FindResource("volumeSelected") + selectedItem.Name + " " + selectedItem.VolumeLabel);
                 btnClean.IsEnabled = true;
                 lbDeleteAlgorithm.Visibility = Visibility.Visible; 
             }
