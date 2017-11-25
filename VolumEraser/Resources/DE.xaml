@@ -5,7 +5,12 @@
 
     <system:String x:Key="btn_format">Datenträger formatieren</system:String>
     <system:String x:Key="btn_cancel">Abbrechen</system:String>
-    <system:String x:Key="volumeSelected">Datenträger ausgewählt: </system:String>
-
-     
+    <system:String x:Key="volumeSelected">Datenträger ausgewählt:</system:String>
+    <system:String x:Key="deleteStarted">Speicherplatz wird bereinigt</system:String>
+    <system:String x:Key="deleteEnded">Speicherplatz bereinigt</system:String>
+    <system:String x:Key="eraseStarted">Formatieren gestarted</system:String>
+    <system:String x:Key="eraseEnded">Vollständiges Löschen war erfolgreich</system:String>
+    <system:String x:Key="progressStoppedAt">Vorgang abgebrochen bei</system:String>
+    <system:String x:Key="done">Fertig</system:String>
+ 
 </ResourceDictionary>

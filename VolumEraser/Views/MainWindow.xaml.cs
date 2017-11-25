@@ -53,6 +53,9 @@ namespace VolumEraser.Views
             lvDrives.ItemsSource = Volumes.getDrives(); 
         }
 
+        /// <summary>
+        /// Method to set language
+        /// </summary>
         private void SetLanguageDictionary()
         {
             ResourceDictionary dict = new ResourceDictionary();
@@ -116,28 +119,28 @@ namespace VolumEraser.Views
                 btnCancel.Visibility = Visibility.Visible;
 
                 // Clear all content
-                lvReport.Items.Add("Speicherplatz wird bereinigt");
+                lvReport.Items.Add(FindResource("deleteStarted"));
                 VolumeController.deleteVolume(selectedItem);
-                lvReport.Items.Add("Speicherplatz bereinigt");
+                lvReport.Items.Add(FindResource("deleteEnded"));
                 listViewReportScrollDown();
 
                 // Start writing random data
                 cts = new CancellationTokenSource();
                 try
                 {
-                    lvReport.Items.Add("Formatieren gestartet"); 
+                    lvReport.Items.Add(FindResource("eraseStarted")); 
                     await VolumeController.eraseVolume(cts.Token, selectedItem, algorithm);
-                    MessageBox.Show("Löschen erfolgreich"); 
+                    MessageBox.Show(FindResource("eraseEnded").ToString()); 
                 }
                 catch (Exception ex)
                 {
                     VolumeController.deleteVolume(selectedItem);
-                    lvReport.Items.Add("Vorgang abgebrochen bei " + lblProgress.Content);
+                    lvReport.Items.Add(FindResource("progressStoppedAt").ToString() + lblProgress.Content);
                     MessageBox.Show(ex.Message);
                     resetProgressBar();
                 }
                  
-                lvReport.Items.Add("Fertig");
+                lvReport.Items.Add(FindResource("done"));
                 listViewReportScrollDown();
                 cts.Cancel();
 
