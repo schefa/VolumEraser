@@ -3,14 +3,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
      xmlns:system="clr-namespace:System;assembly=mscorlib">
 
-    <system:String x:Key="btn_format">Datenträger formatieren</system:String>
-    <system:String x:Key="btn_cancel">Abbrechen</system:String>
-    <system:String x:Key="volumeSelected">Datenträger ausgewählt:</system:String>
-    <system:String x:Key="deleteStarted">Speicherplatz wird bereinigt</system:String>
-    <system:String x:Key="deleteEnded">Speicherplatz bereinigt</system:String>
-    <system:String x:Key="eraseStarted">Formatieren gestarted</system:String>
-    <system:String x:Key="eraseEnded">Vollständiges Löschen war erfolgreich</system:String>
-    <system:String x:Key="progressStoppedAt">Vorgang abgebrochen bei</system:String>
-    <system:String x:Key="done">Fertig</system:String>
+    <system:String x:Key="msg_btnFormat">Datenträger formatieren</system:String>
+    <system:String x:Key="msg_btnCancel">Abbrechen</system:String>
+    <system:String x:Key="msg_volumeSelected">Datenträger:</system:String>
+    <system:String x:Key="msg_deleteStarted">Speicherplatz wird bereinigt</system:String>
+    <system:String x:Key="msg_deleteEnded">Speicherplatz bereinigt</system:String>
+    <system:String x:Key="msg_eraseStarted">Formatieren gestarted</system:String>
+    <system:String x:Key="msg_eraseEnded">Vollständiges Löschen war erfolgreich</system:String>
+    <system:String x:Key="msg_progressStoppedAt">Vorgang abgebrochen bei</system:String>
+    <system:String x:Key="msg_done">Fertig</system:String>
  
 </ResourceDictionary>

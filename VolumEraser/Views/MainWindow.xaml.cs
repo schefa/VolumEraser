@@ -71,11 +71,17 @@ namespace VolumEraser.Views
             this.Resources.MergedDictionaries.Add(dict);
         }
 
+        /// <summary>
+        /// Radio Button - Delete Algorithm Unchecked
+        /// </summary> 
         public void rb_Unchecked(object sender, RoutedEventArgs e)
         {
             algorithm = DeleteAlgorithm.DeleteAlgorithmEnum.DoD_7;
         }
 
+        /// <summary>
+        /// Radio Button - Delete Algorithm - selects checked
+        /// </summary> 
         public void rb_Checked(object sender, RoutedEventArgs e)
         {
             algorithm = (DeleteAlgorithm.DeleteAlgorithmEnum)((sender as RadioButton).Content);
@@ -92,7 +98,7 @@ namespace VolumEraser.Views
             // Only removable supported
             if(Models.Volume.checkDriveType(selectedItem.DriveType))
             {
-                lvReport.Items.Add(FindResource("volumeSelected") + selectedItem.Name + " " + selectedItem.VolumeLabel);
+                lvReport.Items.Add(FindResource("msg_volumeSelected") + selectedItem.Name + " " + selectedItem.VolumeLabel);
                 btnClean.IsEnabled = true;
                 lbDeleteAlgorithm.Visibility = Visibility.Visible; 
             }
@@ -119,28 +125,28 @@ namespace VolumEraser.Views
                 btnCancel.Visibility = Visibility.Visible;
 
                 // Clear all content
-                lvReport.Items.Add(FindResource("deleteStarted"));
+                lvReport.Items.Add(FindResource("msg_deleteStarted"));
                 VolumeController.deleteVolume(selectedItem);
-                lvReport.Items.Add(FindResource("deleteEnded"));
+                lvReport.Items.Add(FindResource("msg_deleteEnded"));
                 listViewReportScrollDown();
 
                 // Start writing random data
                 cts = new CancellationTokenSource();
                 try
                 {
-                    lvReport.Items.Add(FindResource("eraseStarted")); 
+                    lvReport.Items.Add(FindResource("msg_eraseStarted")); 
                     await VolumeController.eraseVolume(cts.Token, selectedItem, algorithm);
-                    MessageBox.Show(FindResource("eraseEnded").ToString()); 
+                    MessageBox.Show(FindResource("msg_eraseEnded").ToString()); 
                 }
                 catch (Exception ex)
                 {
                     VolumeController.deleteVolume(selectedItem);
-                    lvReport.Items.Add(FindResource("progressStoppedAt").ToString() + lblProgress.Content);
+                    lvReport.Items.Add(FindResource("msg_progressStoppedAt").ToString() + lblProgress.Content);
                     MessageBox.Show(ex.Message);
                     resetProgressBar();
                 }
                  
-                lvReport.Items.Add(FindResource("done"));
+                lvReport.Items.Add(FindResource("msg_done"));
                 listViewReportScrollDown();
                 cts.Cancel();
 
