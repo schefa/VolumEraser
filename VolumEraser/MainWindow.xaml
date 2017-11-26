@@ -1,0 +1,55 @@
+﻿<Window x:Class="VolumEraser.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VolumEraser"
+        mc:Ignorable="d"
+        Title="External Disk Cleaner" Height="350" Width="640">
+    <Grid>
+
+        <DockPanel x:Name="MainPanel" Margin="0,0,-0.4,-0.2">
+
+            <StackPanel DockPanel.Dock="Top">
+
+                <ListView x:Name="lvDrives" Margin="10" SelectionChanged="lvDrives_SelectionChanged">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                            <GridViewColumn Header="DriveType" DisplayMemberBinding="{Binding DriveType}" />
+                            <GridViewColumn Header="VolumeLabel" DisplayMemberBinding="{Binding VolumeLabel}" />
+                            <GridViewColumn Header="DriveFormat" DisplayMemberBinding="{Binding DriveFormat}" />
+                            <GridViewColumn Header="TotalFreeSpace" DisplayMemberBinding="{Binding TotalFreeSpaceDisplay}" />
+                            <GridViewColumn Header="TotalSize" DisplayMemberBinding="{Binding TotalSizeDisplay}" />
+                            <GridViewColumn Header="TotalTakenSpace" DisplayMemberBinding="{Binding TotalTakenSpace}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+                <Label x:Name="lblSelectedDisk" Content="Selected" Margin="10" />
+
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.8*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <ProgressBar x:Name="progressBar" Grid.Column="0" Grid.Row="0" Height="24" Margin="0" />
+                    <Label x:Name="lblProgress" Grid.Column="1" Grid.Row="0" Height="24" Content="0 %" Width="60" />
+                </Grid>
+
+                <ListView x:Name="lvReport" Height="66" Margin="0,0,-0.4,0" />
+
+            </StackPanel>
+
+            <StackPanel DockPanel.Dock="Bottom" Height="49" Orientation="Horizontal" Margin="0" VerticalAlignment="Bottom">
+
+                <Button x:Name="btnClean" Content="Datenträger formatieren" HorizontalAlignment="Left" Margin="10,10,10,0" VerticalAlignment="Top" Width="149" IsEnabled="False" Click="btnClean_Click" Height="27"/>
+
+                <Button x:Name="btnCancel" Content="Abbrechen" IsEnabled="False" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Top" Width="81" Height="27" Click="btnCancel_Click"/>
+
+            </StackPanel>
+
+        </DockPanel>
+
+    </Grid>
+</Window>
