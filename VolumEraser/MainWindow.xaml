@@ -30,8 +30,8 @@
 
                 <Grid Margin="10">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.8*"></ColumnDefinition>
-                        <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.9*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.1*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <ProgressBar x:Name="progressBar" Grid.Column="0" Grid.Row="0" Height="24" Margin="0" />
                     <Label x:Name="lblProgress" Grid.Column="1" Grid.Row="0" Height="24" Content="0 %" Width="60" />
