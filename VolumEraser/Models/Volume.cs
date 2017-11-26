@@ -3,8 +3,11 @@ using System.IO;
 
 namespace VolumEraser.Models
 {
-    public class HardDrive
-    { 
+    public class Volume
+    {
+
+        #region Attributes
+
         public string Name { get; set; }
         
         public DriveType DriveType { get; set; }
@@ -32,5 +35,15 @@ namespace VolumEraser.Models
         }
 
         public DirectoryInfo RootDirectory { get; set; }
+
+        #endregion
+
+        /// <summary>
+        /// Whitelist for all volume types that are allowed to be purged
+        /// </summary> 
+        public static bool checkDriveType(DriveType driveType)
+        {
+            return (driveType == DriveType.Removable);
+        }
     }
 }

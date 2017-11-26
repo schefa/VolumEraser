@@ -19,7 +19,7 @@ namespace VolumEraser
 
         #region Attributes
 
-        private HardDrive selectedItem;
+        private Volume selectedItem;
 
         public static ProgressBar PGBar { get; private set; }
         public static ListView LVReport { get; private set; }
@@ -30,6 +30,10 @@ namespace VolumEraser
 
         #endregion
 
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
@@ -40,16 +44,19 @@ namespace VolumEraser
             LabelProgress = lblProgress;
 
             lblSelectedDisk.Content = "";
-            lvDrives.ItemsSource = HardDrives.getDrives(); 
+            lvDrives.ItemsSource = Volumes.getDrives(); 
         }
 
+        /// <summary>
+        /// Method to set the current volume to be purged
+        /// </summary> 
         private void lvDrives_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             btnClean.IsEnabled = false; 
-            selectedItem = (HardDrive) lvDrives.SelectedItem;
+            selectedItem = (Volume) lvDrives.SelectedItem;
 
             // Only removable supported
-            if(checkDriveType(selectedItem.DriveType))
+            if(Models.Volume.checkDriveType(selectedItem.DriveType))
             {
                 lblSelectedDisk.Content = selectedItem.Name + " "+ selectedItem.VolumeLabel;
                 btnClean.IsEnabled = true; 
@@ -61,10 +68,13 @@ namespace VolumEraser
             }
         }
         
+        /// <summary>
+        /// Button click method to erase a volume
+        /// </summary> 
         private async void btnClean_Click(object sender, RoutedEventArgs e)
         {
             
-            if (selectedItem != null && checkDriveType(selectedItem.DriveType))
+            if (selectedItem != null && Models.Volume.checkDriveType(selectedItem.DriveType))
             {
 
                 resetProgressBar();
@@ -73,7 +83,7 @@ namespace VolumEraser
 
                 // Clear all content
                 lvReport.Items.Add("Speicherplatz wird bereinigt");
-                HardDriveController.deleteContent(selectedItem);
+                VolumeController.deleteVolume(selectedItem);
                 lvReport.Items.Add("Speicherplatz bereinigt");
                 listViewReportScrollDown();
 
@@ -82,12 +92,12 @@ namespace VolumEraser
                 try
                 {
                     lvReport.Items.Add("Formatieren gestartet");
-                    await HardDriveController.Delete(cts.Token, selectedItem);
+                    await VolumeController.eraseVolume(cts.Token, selectedItem);
                     MessageBox.Show("Löschen erfolgreich"); 
                 }
                 catch (Exception ex)
                 {
-                    HardDriveController.deleteContent(selectedItem);
+                    VolumeController.deleteVolume(selectedItem);
                     lvReport.Items.Add("Vorgang abgebrochen bei " + lblProgress.Content);
                     MessageBox.Show(ex.Message);
                     resetProgressBar();
@@ -102,16 +112,15 @@ namespace VolumEraser
             }
         }
 
+        /// <summary>
+        /// Method to abort or cancel the process
+        /// </summary> 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         { 
             if (cts != null)
             {
                 cts.Cancel();
             }
-        }
-
-        public bool checkDriveType(DriveType driveType) {
-            return (driveType == DriveType.Removable); 
         }
 
         public void resetProgressBar()

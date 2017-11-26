@@ -63,7 +63,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Controller\HardDrive.cs" />
+    <Compile Include="Controller\Volume.cs" />
     <Compile Include="Helpers\SecureDeleteExtensions.cs" />
     <Compile Include="Helpers\Utilities.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -72,8 +72,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\HardDrive.cs" />
-    <Compile Include="Models\HardDrives.cs" />
+    <Compile Include="Models\Volume.cs" />
+    <Compile Include="Models\Volumes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

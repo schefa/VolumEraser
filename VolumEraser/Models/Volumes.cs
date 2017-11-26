@@ -4,20 +4,23 @@ using System.IO;
 
 namespace VolumEraser.Models
 {
-    public class HardDrives
+    public class Volumes
     {
 
-        public static List<HardDrive> getDrives()
+        /// <summary>
+        /// Method to get all available volumes
+        /// </summary> 
+        public static List<Volume> getDrives()
         {
             DriveInfo[] allDrives = DriveInfo.GetDrives();
 
-            List<HardDrive> items = new List<HardDrive>();
+            List<Volume> items = new List<Volume>();
 
             foreach (DriveInfo d in allDrives)
             {
                 if (d.IsReady == true)
                 {
-                    var lvItem = new HardDrive()
+                    var lvItem = new Volume()
                     {
                         Name = d.Name,
                         DriveType = d.DriveType,
