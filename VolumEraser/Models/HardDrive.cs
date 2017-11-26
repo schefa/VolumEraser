@@ -25,6 +25,7 @@ namespace VolumEraser.Models
         {
             get { return Utilities.humanFilesize(TotalSize); }
         }
+
         public string TotalFreeSpaceDisplay
         {
             get { return Utilities.humanFilesize(TotalFreeSpace); }
