@@ -28,6 +28,7 @@
 
                 <Label x:Name="lblSelectedDisk" Content="Selected" Margin="10" />
 
+               
                 <Grid Margin="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.9*"></ColumnDefinition>
