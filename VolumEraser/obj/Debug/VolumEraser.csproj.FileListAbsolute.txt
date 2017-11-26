@@ -1,14 +1,1 @@
-C:\Users\schefa\workspace\Repos\VolumEraser\VolumEraser\bin\Debug\VolumEraser.exe.config
-C:\Users\schefa\workspace\Repos\VolumEraser\VolumEraser\bin\Debug\VolumEraser.exe
-C:\Users\schefa\workspace\Repos\VolumEraser\VolumEraser\bin\Debug\VolumEraser.pdb
-C:\Users\schefa\workspace\Repos\VolumEraser\VolumEraser\obj\Debug\VolumEraser.csprojResolveAssemblyReference.cache
-C:\Users\schefa\workspace\Repos\VolumEraser\VolumEraser\obj\Debug\MainWindow.g.cs
-C:\Users\schefa\workspace\Repos\VolumEraser\VolumEraser\obj\Debug\App.g.cs
-C:\Users\schefa\workspace\Repos\VolumEraser\VolumEraser\obj\Debug\VolumEraser_MarkupCompile.cache
-C:\Users\schefa\workspace\Repos\VolumEraser\VolumEraser\obj\Debug\VolumEraser_MarkupCompile.lref
-C:\Users\schefa\workspace\Repos\VolumEraser\VolumEraser\obj\Debug\MainWindow.baml
-C:\Users\schefa\workspace\Repos\VolumEraser\VolumEraser\obj\Debug\VolumEraser.g.resources
-C:\Users\schefa\workspace\Repos\VolumEraser\VolumEraser\obj\Debug\VolumEraser.Properties.Resources.resources
-C:\Users\schefa\workspace\Repos\VolumEraser\VolumEraser\obj\Debug\VolumEraser.csproj.GenerateResource.Cache
-C:\Users\schefa\workspace\Repos\VolumEraser\VolumEraser\obj\Debug\VolumEraser.exe
-C:\Users\schefa\workspace\Repos\VolumEraser\VolumEraser\obj\Debug\VolumEraser.pdb
+C:\Users\schefa\workspace\Github\VolumEraser\VolumEraser\bin\Debug\VolumEraser.exe.config
