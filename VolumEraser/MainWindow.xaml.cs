@@ -21,6 +21,8 @@ namespace VolumEraser
 
         private Volume selectedItem;
 
+        private DeleteAlgorithm.DeleteAlgorithmEnum algorithm = DeleteAlgorithm.DeleteAlgorithmEnum.DoD_7;
+
         public static ProgressBar PGBar { get; private set; }
         public static ListView LVReport { get; private set; }
 
@@ -29,8 +31,7 @@ namespace VolumEraser
         public CancellationTokenSource cts;
 
         #endregion
-
-
+        
         /// <summary>
         /// Constructor
         /// </summary>
@@ -42,6 +43,12 @@ namespace VolumEraser
             PGBar = progressBar;
             LVReport = lvReport;
             LabelProgress = lblProgress;
+             
+            List<DeleteAlgorithm> items = new List<DeleteAlgorithm>();
+            items.Add(new DeleteAlgorithm() { Title = "DoD 3", Algorithm = DeleteAlgorithm.DeleteAlgorithmEnum.DoD_3 });
+            items.Add(new DeleteAlgorithm() { Title = "DoD 7", Algorithm = DeleteAlgorithm.DeleteAlgorithmEnum.DoD_3 });
+            lbDeleteAlgorithm.ItemsSource = items;
+            lbDeleteAlgorithm.SelectedIndex = lbDeleteAlgorithm.Items.Count - 1;
 
             lblSelectedDisk.Content = "";
             lvDrives.ItemsSource = Volumes.getDrives(); 
@@ -79,7 +86,9 @@ namespace VolumEraser
 
                 resetProgressBar();
                 btnClean.IsEnabled = false;
+                btnClean.Visibility = Visibility.Hidden;
                 btnCancel.IsEnabled = true;
+                btnCancel.Visibility = Visibility.Visible;
 
                 // Clear all content
                 lvReport.Items.Add("Speicherplatz wird bereinigt");
@@ -91,8 +100,8 @@ namespace VolumEraser
                 cts = new CancellationTokenSource();
                 try
                 {
-                    lvReport.Items.Add("Formatieren gestartet");
-                    await VolumeController.eraseVolume(cts.Token, selectedItem);
+                    lvReport.Items.Add("Formatieren gestartet"); 
+                    await VolumeController.eraseVolume(cts.Token, selectedItem, algorithm);
                     MessageBox.Show("Löschen erfolgreich"); 
                 }
                 catch (Exception ex)
@@ -107,8 +116,10 @@ namespace VolumEraser
                 listViewReportScrollDown();
                 cts.Cancel();
 
-                btnClean.IsEnabled = true;
+                btnClean.IsEnabled = true; 
+                btnClean.Visibility = Visibility.Visible;
                 btnCancel.IsEnabled = false;
+                btnCancel.Visibility = Visibility.Hidden;
             }
         }
 
@@ -134,5 +145,11 @@ namespace VolumEraser
             lvReport.SelectedIndex = lvReport.Items.Count - 1;
             lvReport.ScrollIntoView(lvReport.SelectedItem);
         }
+
+        private void lbDeleteAlgorithm_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            algorithm = (lbDeleteAlgorithm.SelectedItem != null) ? ((DeleteAlgorithm)lbDeleteAlgorithm.SelectedItem).Algorithm : DeleteAlgorithm.DeleteAlgorithmEnum.DoD_7;
+        }
+         
     }
 }

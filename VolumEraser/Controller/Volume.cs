@@ -4,7 +4,7 @@ using System.Windows;
 using VolumEraser.Models;
 using System.Threading;
 using System.Windows.Threading;
-using System.Threading.Tasks;
+using System.Threading.Tasks; 
 
 namespace VolumEraser.Controller
 {
@@ -13,6 +13,7 @@ namespace VolumEraser.Controller
         #region Attributes
         private const int MAX_BUFFER_SIZE = 10 * 1024 * 1024;
         protected static Action EmptyDelegate = delegate () { };
+         
         #endregion
 
         /// <summary>
@@ -53,11 +54,19 @@ namespace VolumEraser.Controller
         /// Based on the U.S. Department of Defense's standard 'National Industrial Security Program Operating Manual' (DoD 5220.22-M ECE).
         /// </summary>
         /// <param name="selectedVolume"></param> 
-        public static async Task eraseVolume( CancellationToken ct, Volume selectedVolume)
+        public static async Task eraseVolume( CancellationToken ct, Volume selectedVolume, DeleteAlgorithm.DeleteAlgorithmEnum algorithm = DeleteAlgorithm.DeleteAlgorithmEnum.DoD_7)
         {
             // Variables
             var dummyFilesCount = Math.Floor((double)selectedVolume.AvailableFreeSpace / MAX_BUFFER_SIZE);
             byte[] pattern = new byte[] { 0x00, 0xFF, 0x72, 0x96, 0x00, 0xFF, 0x72 };
+            int loops = 6;
+
+            if (algorithm == DeleteAlgorithm.DeleteAlgorithmEnum.DoD_3)
+            {
+                loops = 2;
+                pattern = new byte[] { 0x00, 0xFF, 0x72 };
+            }
+
             ThreadSafeRandom.Shuffle<byte>(pattern); 
             Random random = ThreadSafeRandom.Random;
 
@@ -71,8 +80,8 @@ namespace VolumEraser.Controller
                 // Write asynchronous to implement cancel button
                 using (FileStream fs = File.Create(selectedVolume.Name + i, MAX_BUFFER_SIZE, FileOptions.Asynchronous))
                 {
-                    // Loop 7 times (DoD 5220.22-M ECE)
-                    for (int pass = 0; pass <= 6; ++pass)
+                    // Loop 3-7 times (DoD 5220.22-M / ECE)
+                    for (int pass = 0; pass <= loops; ++pass)
                     {
                         fs.Position = 0;
 
@@ -84,7 +93,7 @@ namespace VolumEraser.Controller
                         long bufferSize = MAX_BUFFER_SIZE;
                         byte[] buffer = new byte[bufferSize];
 
-                        if (pass != 1 && pass != 5)
+                        if (pass != 1 && (algorithm == DeleteAlgorithm.DeleteAlgorithmEnum.DoD_7 && pass != 5))
                         {
                             for (int bufferIndex = 0; bufferIndex < bufferSize; ++bufferIndex)
                             {
@@ -102,7 +111,7 @@ namespace VolumEraser.Controller
                         // Create file
                         await fs.WriteAsync(buffer, 0, buffer.Length, ct);
 
-                        // delegate event for progressbar
+                        // Delegate event for progressbar
                         MainWindow.PGBar.Dispatcher.Invoke(EmptyDelegate, DispatcherPriority.Background);
                         MainWindow.LabelProgress.Dispatcher.Invoke(EmptyDelegate, DispatcherPriority.Background);
                         fs.Flush(true);

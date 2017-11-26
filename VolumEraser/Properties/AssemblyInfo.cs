@@ -7,12 +7,12 @@ using System.Windows;
 // Allgemeine Informationen über eine Assembly werden über die folgenden 
 // Attribute gesteuert. Ändern Sie diese Attributwerte, um die Informationen zu ändern,
 // die einer Assembly zugeordnet sind.
-[assembly: AssemblyTitle("WpfApplication1")]
+[assembly: AssemblyTitle("VolumEraser")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("WpfApplication1")]
-[assembly: AssemblyCopyright("Copyright ©  2017")]
+[assembly: AssemblyProduct("VolumEraser")]
+[assembly: AssemblyCopyright("Copyright ©  2017 schefa.com")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
