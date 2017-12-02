@@ -8,6 +8,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Globalization;
 
 namespace VolumEraser
 {
@@ -29,7 +31,7 @@ namespace VolumEraser
         public static Label LabelProgress { get; private set; }
 
         public CancellationTokenSource cts;
-
+        
         #endregion
         
         /// <summary>
@@ -43,15 +45,28 @@ namespace VolumEraser
             PGBar = progressBar;
             LVReport = lvReport;
             LabelProgress = lblProgress;
-             
-            List<DeleteAlgorithm> items = new List<DeleteAlgorithm>();
-            items.Add(new DeleteAlgorithm() { Title = "DoD 3", Algorithm = DeleteAlgorithm.DeleteAlgorithmEnum.DoD_3 });
-            items.Add(new DeleteAlgorithm() { Title = "DoD 7", Algorithm = DeleteAlgorithm.DeleteAlgorithmEnum.DoD_3 });
-            lbDeleteAlgorithm.ItemsSource = items;
-            lbDeleteAlgorithm.SelectedIndex = lbDeleteAlgorithm.Items.Count - 1;
+              
+            foreach (object obj in Enum.GetValues(typeof(DeleteAlgorithm.DeleteAlgorithmEnum)))
+            {
+                RadioButton rb = new RadioButton() { Content = obj, };
+                lbDeleteAlgorithm.Children.Add(rb);
+                rb.Unchecked += new RoutedEventHandler(rb_Unchecked);
+                rb.Checked += new RoutedEventHandler(rb_Checked);
+                rb.IsChecked =  ((DeleteAlgorithm.DeleteAlgorithmEnum)obj == DeleteAlgorithm.DeleteAlgorithmEnum.DoD_7) ? true : false;
+            } 
 
             lblSelectedDisk.Content = "";
             lvDrives.ItemsSource = Volumes.getDrives(); 
+        }
+
+        public void rb_Unchecked(object sender, RoutedEventArgs e)
+        {
+            algorithm = DeleteAlgorithm.DeleteAlgorithmEnum.DoD_7;
+        }
+
+        public void rb_Checked(object sender, RoutedEventArgs e)
+        {
+            algorithm = (DeleteAlgorithm.DeleteAlgorithmEnum)((sender as RadioButton).Content);
         }
 
         /// <summary>
@@ -66,7 +81,8 @@ namespace VolumEraser
             if(Models.Volume.checkDriveType(selectedItem.DriveType))
             {
                 lblSelectedDisk.Content = selectedItem.Name + " "+ selectedItem.VolumeLabel;
-                btnClean.IsEnabled = true; 
+                btnClean.IsEnabled = true;
+                lbDeleteAlgorithm.Visibility = Visibility.Visible; 
             }
             else
             {
@@ -87,6 +103,7 @@ namespace VolumEraser
                 resetProgressBar();
                 btnClean.IsEnabled = false;
                 btnClean.Visibility = Visibility.Hidden;
+                lbDeleteAlgorithm.Visibility = Visibility.Hidden;
                 btnCancel.IsEnabled = true;
                 btnCancel.Visibility = Visibility.Visible;
 
@@ -145,11 +162,6 @@ namespace VolumEraser
             lvReport.SelectedIndex = lvReport.Items.Count - 1;
             lvReport.ScrollIntoView(lvReport.SelectedItem);
         }
-
-        private void lbDeleteAlgorithm_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            algorithm = (lbDeleteAlgorithm.SelectedItem != null) ? ((DeleteAlgorithm)lbDeleteAlgorithm.SelectedItem).Algorithm : DeleteAlgorithm.DeleteAlgorithmEnum.DoD_7;
-        }
-         
+        
     }
 }
