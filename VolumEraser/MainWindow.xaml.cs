@@ -55,6 +55,7 @@ namespace VolumEraser
                 rb.IsChecked =  ((DeleteAlgorithm.DeleteAlgorithmEnum)obj == DeleteAlgorithm.DeleteAlgorithmEnum.DoD_7) ? true : false;
             } 
 
+
             lblSelectedDisk.Content = "";
             lvDrives.ItemsSource = Volumes.getDrives(); 
         }
