@@ -29,8 +29,7 @@
 
                 <Label x:Name="lblSelectedDisk" Content="Selected" Margin="10" />
 
-                <ListView x:Name="lvReport" Height="66" Margin="0" />
-
+               
                 <Grid Margin="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.9*"></ColumnDefinition>
@@ -40,24 +39,29 @@
                     <Label x:Name="lblProgress" Grid.Column="1" Grid.Row="0" Height="24" Content="0 %" Width="60" />
                 </Grid>
 
+                <ListView x:Name="lvReport" Height="66" Margin="0" />
+
             </StackPanel>
 
             <StackPanel DockPanel.Dock="Bottom" Height="49" Orientation="Horizontal" Margin="0" VerticalAlignment="Bottom">
 
-                <!--ListBox Name="lbDeleteAlgorithm" Visibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden" HorizontalContentAlignment="Stretch" Margin="0" Width="84" SelectionChanged="lbDeleteAlgorithm_SelectionChanged">
+                <Button x:Name="btnClean" Content="Datenträger formatieren" HorizontalAlignment="Left" Margin="10,10,10,0" VerticalAlignment="Top" Width="149" IsEnabled="False" Click="btnClean_Click" Height="27"/>
+                <Button x:Name="btnCancel" Content="Abbrechen" Visibility="Hidden" IsEnabled="False" HorizontalAlignment="Left" Margin="10,10,10,0" VerticalAlignment="Top" Width="86" Height="27" Click="btnCancel_Click"/>
+
+                <ListBox Name="lbDeleteAlgorithm" ScrollViewer.HorizontalScrollBarVisibility="Hidden" HorizontalContentAlignment="Stretch" Margin="0" Width="84" SelectionChanged="lbDeleteAlgorithm_SelectionChanged">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Grid Margin="0,2"> 
+                            <Grid Margin="0,2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="100" />
+                                </Grid.ColumnDefinitions>
                                 <TextBlock Text="{Binding Title}" />
                             </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
-                </-->
-                <StackPanel x:Name="lbDeleteAlgorithm"></StackPanel>
-
-                <Button x:Name="btnClean" Content="Datenträger formatieren" HorizontalAlignment="Left" Margin="10,10,10,0" VerticalAlignment="Top" Width="149" IsEnabled="False" Click="btnClean_Click" Height="27"/>
-                <Button x:Name="btnCancel" Content="Abbrechen" Visibility="Hidden" IsEnabled="False" HorizontalAlignment="Left" Margin="10,10,10,0" VerticalAlignment="Top" Width="86" Height="27" Click="btnCancel_Click"/>
-
+                </ListBox>
+                
             </StackPanel>
 
         </DockPanel>
