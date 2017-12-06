@@ -1,17 +1,11 @@
 ﻿using VolumEraser.Controller;
 using VolumEraser.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Globalization;
 
-namespace VolumEraser
+namespace VolumEraser.Views
 {
     /// <summary>
     /// Interaktionslogik für MainWindow.xaml
@@ -54,9 +48,7 @@ namespace VolumEraser
                 rb.Checked += new RoutedEventHandler(rb_Checked);
                 rb.IsChecked =  ((DeleteAlgorithm.DeleteAlgorithmEnum)obj == DeleteAlgorithm.DeleteAlgorithmEnum.DoD_7) ? true : false;
             } 
-
-
-            lblSelectedDisk.Content = "";
+            
             lvDrives.ItemsSource = Volumes.getDrives(); 
         }
 
@@ -81,14 +73,13 @@ namespace VolumEraser
             // Only removable supported
             if(Models.Volume.checkDriveType(selectedItem.DriveType))
             {
-                lblSelectedDisk.Content = selectedItem.Name + " "+ selectedItem.VolumeLabel;
+                lvReport.Items.Add("Datenträger ausgewählt: " + selectedItem.Name + " " + selectedItem.VolumeLabel);
                 btnClean.IsEnabled = true;
                 lbDeleteAlgorithm.Visibility = Visibility.Visible; 
             }
             else
             {
                 selectedItem = null;
-                lblSelectedDisk.Content = null;
             }
         }
         

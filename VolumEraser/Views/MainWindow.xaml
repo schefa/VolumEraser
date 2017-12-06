@@ -1,11 +1,11 @@
-﻿<Window x:Class="VolumEraser.MainWindow"
+﻿<Window x:Class="VolumEraser.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:VolumEraser"
+        xmlns:local="clr-namespace:VolumEraser.Views"
         mc:Ignorable="d"
-        Icon="Icon.ico"
+        Icon="../Resources/Icon.ico"
         Title="VolumEraser" Height="350" Width="640">
     <Grid>
 
@@ -27,8 +27,6 @@
                     </ListView.View>
                 </ListView>
 
-                <Label x:Name="lblSelectedDisk" Content="Selected" Margin="10" />
-
                 <ListView x:Name="lvReport" Height="66" Margin="0" />
 
                 <Grid Margin="10">
@@ -36,8 +34,8 @@
                         <ColumnDefinition Width="0.9*"></ColumnDefinition>
                         <ColumnDefinition Width="0.1*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <ProgressBar x:Name="progressBar" Grid.Column="0" Grid.Row="0" Height="24" Margin="0" />
-                    <Label x:Name="lblProgress" Grid.Column="1" Grid.Row="0" Height="24" Content="0 %" Width="60" />
+                    <ProgressBar x:Name="progressBar" Grid.Column="0" Grid.Row="0" Margin="0"/>
+                    <Label x:Name="lblProgress" Grid.Column="1" Grid.Row="0" Content="0 %" Width="60" Margin="0" />
                 </Grid>
 
             </StackPanel>

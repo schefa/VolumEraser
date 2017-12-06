@@ -4,7 +4,8 @@ using System.Windows;
 using VolumEraser.Models;
 using System.Threading;
 using System.Windows.Threading;
-using System.Threading.Tasks; 
+using System.Threading.Tasks;
+using VolumEraser.Views;
 
 namespace VolumEraser.Controller
 {
