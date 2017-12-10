@@ -6,10 +6,7 @@ namespace VolumEraser.Helpers
     {
         /// <summary>
         /// Transforms the bytes into something more reasonable and readable
-        /// </summary>
-        /// <param name="byteCount"></param>
-        /// <returns>String</returns>
-
+        /// </summary> 
         public static String humanFilesize(long byteCount)
         {
             string[] suf = { "B", "KB", "MB", "GB", "TB", "PB", "EB" }; //Longs run out around EB

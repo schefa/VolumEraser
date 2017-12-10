@@ -40,7 +40,8 @@ namespace VolumEraser.Views
             PGBar = progressBar;
             LVReport = lvReport;
             LabelProgress = lblProgress;
-              
+
+            lbDeleteAlgorithm.Children.Clear();
             foreach (object obj in Enum.GetValues(typeof(DeleteAlgorithm.DeleteAlgorithmEnum)))
             {
                 RadioButton rb = new RadioButton() { Content = obj, };

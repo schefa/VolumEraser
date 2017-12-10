@@ -5,7 +5,7 @@
 
     <system:String x:Key="msg_btnFormat">Erase volume</system:String>
     <system:String x:Key="msg_btnCancel">Cancel</system:String>
-    <system:String x:Key="msg_volumeSelected">Volume:</system:String>
+    <system:String x:Key="msg_volumeSelected">Volume selected: </system:String>
     <system:String x:Key="msg_deleteStarted">Disk space is being cleaned up</system:String>
     <system:String x:Key="msg_deleteEnded">Disk space cleaned up</system:String>
     <system:String x:Key="msg_eraseStarted">Deletion process started</system:String>

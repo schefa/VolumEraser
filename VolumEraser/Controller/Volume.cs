@@ -9,12 +9,15 @@ using VolumEraser.Views;
 
 namespace VolumEraser.Controller
 {
+    /// <summary>
+    /// Controller : Volume
+    /// </summary>
     public class VolumeController
     {
+
         #region Attributes
         private const int MAX_BUFFER_SIZE = 10 * 1024 * 1024;
         protected static Action EmptyDelegate = delegate () { };
-         
         #endregion
 
         /// <summary>

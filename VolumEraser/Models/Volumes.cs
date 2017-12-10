@@ -1,9 +1,13 @@
 ﻿using VolumEraser.Helpers;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace VolumEraser.Models
 {
+    /// <summary>
+    /// Model : Volumes
+    /// </summary>
     public class Volumes
     {
 
@@ -12,7 +16,8 @@ namespace VolumEraser.Models
         /// </summary> 
         public static List<Volume> getDrives()
         {
-            DriveInfo[] allDrives = DriveInfo.GetDrives();
+            var allDrives = DriveInfo.GetDrives()
+                .Where(drive => drive.IsReady && drive.DriveType == DriveType.Removable);
 
             List<Volume> items = new List<Volume>();
 

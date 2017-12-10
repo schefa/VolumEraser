@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace VolumEraser.Models
+﻿namespace VolumEraser.Models
 {
+    /// <summary>
+    /// Model : DeleteAlgorithm
+    /// </summary>
     public class DeleteAlgorithm
     {
 
@@ -23,7 +20,7 @@ namespace VolumEraser.Models
             /// <summary>
             /// 7 passes.
             /// This method is based on the U.S. Department of Defense's standard 'National Industrial Security Program Operating Manual' (US DoD 5220.22-M ECE).  
-            /// It will overwrite a file 7 times.  This method incorporates the DoD-3 method.  It is secure and should be used for general files.
+            /// It will overwrite a volume 7 times.  This method incorporates the DoD-3 method.  It is secure and should be used for general files.
             /// </summary>
             DoD_7 = 8,
         }

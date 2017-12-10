@@ -3,6 +3,9 @@ using System.IO;
 
 namespace VolumEraser.Models
 {
+    /// <summary>
+    /// Model : Volume
+    /// </summary>
     public class Volume
     {
 

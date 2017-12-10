@@ -6,14 +6,14 @@
         xmlns:local="clr-namespace:VolumEraser.Views"
         mc:Ignorable="d"
         Icon="../Resources/Icon.ico"
-        Title="VolumEraser" Height="350" Width="640">
+        Title="VolumEraser" Height="350" Width="640" Background="#FFF7F7F7">
     <Grid>
 
-        <DockPanel x:Name="MainPanel" Margin="0,0,-0.4,-0.2">
+        <DockPanel x:Name="MainPanel" Margin="0">
 
             <StackPanel DockPanel.Dock="Top">
 
-                <ListView x:Name="lvDrives" Margin="10" SelectionChanged="lvDrives_SelectionChanged">
+                <ListView x:Name="lvDrives" Margin="10,10,9.6,10" SelectionChanged="lvDrives_SelectionChanged" Height="129" BorderThickness="0">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
@@ -27,7 +27,7 @@
                     </ListView.View>
                 </ListView>
 
-                <ListView x:Name="lvReport" Height="66" Margin="0" />
+                <ListView x:Name="lvReport" Height="66" Margin="10,0" BorderThickness="0" />
 
                 <Grid Margin="10">
                     <Grid.ColumnDefinitions>
@@ -40,12 +40,15 @@
 
             </StackPanel>
 
-            <StackPanel DockPanel.Dock="Bottom" Height="49" Orientation="Horizontal" Margin="0" VerticalAlignment="Bottom">
+            <StackPanel DockPanel.Dock="Bottom" Height="40" Orientation="Horizontal" Margin="10,0,9.6,10" VerticalAlignment="Bottom">
 
-                <StackPanel x:Name="lbDeleteAlgorithm"></StackPanel>
+                <StackPanel x:Name="lbDeleteAlgorithm" VerticalAlignment="Bottom">
+                    <RadioButton>DoD_3</RadioButton>
+                    <RadioButton>DoD_7</RadioButton>
+                </StackPanel>
 
-                <Button x:Name="btnClean" Content="{DynamicResource msg_btnFormat}" HorizontalAlignment="Left" Margin="10,10,10,0" VerticalAlignment="Top" Width="149" IsEnabled="False" Click="btnClean_Click" Height="27"/>
-                <Button x:Name="btnCancel" Content="{DynamicResource msg_btnCancel}" Visibility="Hidden" IsEnabled="False" HorizontalAlignment="Left" Margin="10,10,10,0" VerticalAlignment="Top" Width="86" Height="27" Click="btnCancel_Click"/>
+                <Button x:Name="btnClean" Content="{DynamicResource msg_btnFormat}" HorizontalAlignment="Right" Margin="10,0" VerticalAlignment="Bottom" Width="149" IsEnabled="False" Click="btnClean_Click" Height="30"/>
+                <Button x:Name="btnCancel" Content="{DynamicResource msg_btnCancel}" HorizontalAlignment="Right" Visibility="Hidden" IsEnabled="False" Margin="10,10,10,0" VerticalAlignment="Top" Width="86" Height="27" Click="btnCancel_Click"/>
 
             </StackPanel>
 
